@@ -1,12 +1,6 @@
 on init
     exec u:r:magisk:s0 root root -- ${MAGISKTMP}/fstab.sh
     exec u:r:magisk:s0 root root -- ${MAGISKTMP}/replace.sh
-    # Start lmkd before any other services run so that it can register them
-    chown root system /sys/module/lowmemorykiller/parameters/adj
-    chmod 0664 /sys/module/lowmemorykiller/parameters/adj
-    chown root system /sys/module/lowmemorykiller/parameters/minfree
-    chmod 0664 /sys/module/lowmemorykiller/parameters/minfree
-    start lmkd
 
 on property:sys.boot_completed=1
     exec u:r:magisk:s0 root root -- ${MAGISKTMP}/mem.sh
